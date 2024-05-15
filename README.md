@@ -52,46 +52,47 @@ filename1 is loaded in main memory and is assigned process id 1
 filename2 is loaded in virtual memory and is assigned process id 2
 filename3 could not be loaded - file does not exist
 filename4 could not be loaded - memory is full
-run <pid>
+
+run <pid> :
 Execute the sequence of instructions in the program identified by its pid; If a process is in virtual memory, bring the process into physical memory and execute it. This may result in some other process being swapped out.(use LRU replacement algorithm)
 
 For each statement, print the corresponding output statements to screen, as explained above (ex: Result: Value in addr x = 100, addr y = 50, addr z = 150)
 
 If an invalid pid is specified, output an error message and continue to accept the next command.
 
-kill <pid>
+kill <pid> :
 Kill the program identified by process id; remove all memory allocated to the process. Print a corresponding confirmation message to the screen.
 
 If an invalid pid is specified, output an error message and continue to accept the next command.
 
-listpr
+listpr :
 Print to screen the identifier values of all processes in main memory and in virtual memory: print the pids of processes in main memory first (sorted by pid), followed by pids of processes in virtual memory (sorted by pid).
 
-pte <pid> <file>
+pte <pid> <file> :
 Print the page table entry information of a process to the specified output file. This will contain the logical page number and the physical page number for each logical page.
 
 If an invalid pid is specified, output an error message and continue to the next command.
 
 If the file already exists, append the output to the file. Include the date/time at the start of output data each time this command is invoked.
 
-pteall  <file>
+pteall  <file> :
 Print all the page table entries to the specified output file in ascending pid order (starting at pid 1).
 
 If the file already exists, append the output to the file. Include the date/time at the start of output data each time this command is invoked.
 
-swapout <pid>
+swapout <pid> :
 Swap out the process specified by pid into virtual memory. No other action needed. Print to screen corresponding messages.
 
 If an invalid pid is specified, output an error message and continue to accept the next command.
 
-swapin <pid>
+swapin <pid> :
 Swap in the process specified by pid into main memory. Note that other process(es) may have to be swapped out to make room. Print corresponding messages to screen. When a process is swapped in (or out), ALL the pages of that process will be swapped out (or in) at the same time.
 
 If there is not enough capacity in main memory, the page / process replacement algorithm should swap out the last run process(es) in main memory. (use LRU replacement algorithm)
 
 If an invalid pid is specified, output an error message and continue to accept the next command.
 
-print <memloc> <length>
+print <memloc> <length> :
 Print the values stored in the physical memory locations from memloc through memloc + length - 1.(if no value is stored print 0) For example, print 1001 3 will result in an output of:
 
  Value of 1001: 23 
@@ -160,6 +161,7 @@ infile has the following contents
   run 4
   run 1
   exit
+  
 The sample session is as follows:
 
 % cd LAB9
@@ -167,29 +169,3 @@ The sample session is as follows:
 % make lab9
 
 % ./lab9 -M 32 -V 32 -P 512 -i infile -o outfile
-What to Submit
-Submit the following files, as a single tar-gzipped file:
-
-Source Files
-
-A README file for the TA. The README should document known error cases and weaknesses with the program. You should also document if any code used in your submission has been obtained/modified from any other source, including those found on the web. If you helped any other CS3500 student and/or took help from/discussed with any other student, please describe it here.
-
-A COMMENTS file which describes your experience with the project, suggestions for change, and anything else you may wish to say regarding this project. This is your opportunity for feedback, and will be very helpful.
-
-Comments
-WARNING ABOUT ACADEMIC DISHONESTY: Do not share or discuss your work with anyone else. The work YOU submit SHOULD be the result of YOUR efforts. The academic conduct code violation policy and penalties, as discussed in the class website, will be applied.
-
-Ask questions EARLY. Do not wait until the last day. This project is quite time-consuming.
-
-Implement the solutions, step by step. Trying to write the entire program in one shot, and compiling the program will lead to frustration, more than anything else. For example, you can start with interpretation of the commands in a file, then implement paging support, followed by virtual memory, etc.
-
-Grading
-load,run,kill,exit : 30 points
-
-listpr,pte,pteall : 30 points
-
-swapin,swapout,print: 30 points
-
-No README/COMMENTS: -5 points;
-
-2. Memory (10 Marks)
